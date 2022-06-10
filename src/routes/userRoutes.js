@@ -14,8 +14,21 @@ router.get('/', (req, res) => {
 
 
 router.post('/users', (req, res) => {
-    console.log(req.body);
-    res.json({ status: 'Data Received' });
+    // we create a variable with the data of the user
+    // remember that the id is updated automatically for the db
+    // the same for the fields updated_at and created_at
+    const { username, password, email } = req.body;
+    console.log(username);
+    console.log(password);
+    console.log(email);
+
+    mysqlConnection.query('INSERT INTO users ( username, password, email) values ( ?, ?, ?)', [username, password, email], (err, rows, fields) => {
+        if (!err) {
+            res.json({ status: 'User load' });
+        } else {
+            console.log(err);
+        }
+    });
 });
 
 
