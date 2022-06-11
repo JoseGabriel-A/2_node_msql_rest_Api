@@ -11,12 +11,12 @@ app.listen(app.get('port'), () => {
 });
 
 
-// middlewares, son funciones que se ejecutan cada vez que recibo una peticion
+// middlewares
 
-app.use(morgan('dev')); // gracias a esto puedo ver los request por consola.
-app.use(bodyParser.json()); //con bodyParser puedo comprender los msjs de la rest api
+app.use(morgan('dev'));
+app.use(bodyParser.json());
 
-// routes urls de nuestro servidor
+// routes urls 
 app.use(require('./routes/userRoutes'));
 
 
