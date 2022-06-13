@@ -50,6 +50,18 @@ router.put('/users', (req, res) => {
     });
 });
 
-
+// with id X this delete the data user.( select user with the same id)
+router.delete('/users', (req, res) => {
+    const { id } = req.body;
+    console.log(id);
+    mysqlConnection.query('DELETE FROM users WHERE id = ?', [id], (err,
+        rows, fields) => {
+        if (!err) {
+            res.json({ status: 'User Deleted' });
+        } else {
+            console.log(err);
+        }
+    });
+});
 
 module.exports = router;
